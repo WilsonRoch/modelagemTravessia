@@ -12,45 +12,37 @@ cientista: 10 minutos
 O problema é: qual a sequência de travessia para que o tempo total seja no máximo de 17 minutos.
 
 Contudo, para cruzar a ponte é preciso usar uma lanterna e no máximo duas pessoas podem cruzar a ponte. Qualquer pessoa cruzando a ponte precisa segurar a lanterna.
-
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 1) Estados:
 	Estado Inicial:
-		string Pessoas = 'EEEEE' # Lanterna Aluno Professora Zelador Cientista;
+		string Pessoas = 'EEEEE'; # Lanterna Aluno Professora Zelador Cientista
 		tempoTotal = 0;
 
 	Estado Final:
-		string Pessoas = "DDDDD"
+		string Pessoas = "DDDDD";
 		tempoTotal <= 17;
 	
 
 2) Regras de Transição:
-	1. cruzaAluno;
-    2. cruzaAlunoProfessora;
-	3. cruzaAlunoZelador;
-	4. cruzaAlunoCientista
-	5. cruzaProfessora;
-	6. cruzaProfessoraZelador;
-	7. cruzaProfessoraCientista;
-	8. cruzaZelador;
-	9. cruzaZeladorCientista;
-	10.cruzaCientista;
+	1. cruzaAluno ("DDEEE", 1);
+    2. cruzaAlunoProfessora ("DDDEE", 2);
+	3. cruzaAlunoZelador ("DDEDE", 5);
+	4. cruzaAlunoCientista ("DDEED", 10);
+	5. cruzaProfessora ("DEDEE", 2);
+	6. cruzaProfessoraZelador ("DEDDE", 5);
+	7. cruzaProfessoraCientista ("DEDED", 10);
+	8. cruzaZelador ("DEEDE", 5);
+	9. cruzaZeladorCientista ("DEEDD", 10);
+	10.cruzaCientista ("DEEED", 10);
 
 3) Restrições:
-	lanterna == pessoa && pessoa == pessoa;
+	lanterna == pessoa; # a lanterna deve estar com uma das pessoas na travessia (mesmo lado)
+	pessoa == pessoa; # ao cruzar com duas pessoas, as duas devem estar no mesmo lado
+	tempoTotal <=17; # tempoTotal não deve exceder o limite de 17 minutos
 
 4) Visitados:
-	("DDEEE", 1)
-	("DDDEE", 2)
-	("DDEDE", 5)
-	("DDEED", 10)
-	("DEDEE", 2)
-	("DEDDE", 5)
-	("DEDED", 10)
-	("DEEDE", 5)
-	("DEEDD", 10)
-	("DEEED", 10)
+	("EEEEE", 0);
 
 5) Função Objetivo:
 	Pessoas == "DDDDD" && tempoTotal <= 17;
